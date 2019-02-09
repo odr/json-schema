@@ -6,3 +6,11 @@ We need the next functions:
 - Generate doc
 - arbitrary
 - migration (?)
+
+ToJSON, FromJSON come from Aeson.
+
+Draft of Validate is ready.
+
+Doc and Arbirtary TODO.
+
+Migration needs clarification.
