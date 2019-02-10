@@ -20,9 +20,6 @@ instance Validatable Integer
 instance Validatable Bool
   where validate _ = True
 
-instance Validatable Char
-  where validate _ = True
-
 instance Validatable a => Validatable (Maybe a) where
   validate = F.all validate
 instance Validatable a => Validatable [a] where

@@ -87,13 +87,12 @@ compLen
   => (Int -> Int -> Bool) -> Tagged t Text -> Bool
 compLen p = (`p` (fromInteger $ natVal (Proxy @n))) . T.length . untag
 
--- instance KnownSymbol s => Validatable (Tagged (TRegex s) Text) where
---   validate =
--- TODO: TRefex, AEq
+-- TODO: TRegex, AEq
 
 instance Names xs => Validatable (Tagged ('TEnum xs) Text) where
   validate = (`elem` names @xs) . untag
 
+-- simplest class just to not depends on singletons
 class Names (xs :: [Symbol]) where
   names :: [Text]
 instance Names '[] where

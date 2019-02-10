@@ -18,6 +18,15 @@ data T2 = T2
   , t22 :: Tagged (TEnum '["foo","bar","baz"]) Text }
   deriving (Show, Eq)
 
+-- just generate
+-- type instance RecFields T1 =
+--   '[ '("t11", Integer)
+--    , '("t12", Tagged (PAnd (NGt 10) (NLt 100)) Int)
+--    , '("t13", Maybe (Tagged (TLt 10) Text)) ]
+--
+-- utilizing Generic is also possible
+-- but TH is faster both for compile and execute
+--
 genRecInfo ''T1
 genRecInfo ''T2
 
@@ -38,3 +47,4 @@ main = do
     $ T2 (T1 123 (Tagged 15) (Just $ Tagged "qwerqwer")) (Tagged "boom")
   print $ not $ validate
     $ T2 (T1 123 (Tagged 150) (Just $ Tagged "qwerqwer")) (Tagged "foo")
+  -- all prints print `True`
